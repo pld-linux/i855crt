@@ -1,7 +1,7 @@
 Summary:	intel 855GM crt video out driver
 Name:		i855crt
 Version:	0.4
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/sourceforge/i855crt/%{name}-%{version}.tar.gz
