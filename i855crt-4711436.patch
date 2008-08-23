@@ -1,0 +1,44 @@
+--- i855crt.c.orig	2006-10-09 16:02:59.000000000 +0100
++++ i855crt.c	2006-10-09 16:07:07.000000000 +0100
+@@ -240,7 +240,7 @@
+ 			
+ }
+ 	
+-/*this tries to find know video card in lspci output */
++/*this tries to find known video card in lspci output */
+ char *i810_chip(char **buff_ptr, int *len_ptr, FILE *pci_f) 
+ {
+ 	int i;
+@@ -254,10 +254,11 @@
+ 		(p = strstr(*buff_ptr, I810_DC100STR_1)) != NULL ||
+ 		(p = strstr(*buff_ptr, I810_DC100STR_2)) != NULL ||
+ 		(p = strstr(*buff_ptr, I810_IGSTR)) != NULL ||
+-		(p = strstr(*buff_ptr, I810_CFCSTR)) != NULL;
++		(p = strstr(*buff_ptr, I810_CFCSTR)) != NULL ||
+ 		(p = strstr(*buff_ptr, I830STR)) != NULL ||
+ 		(p = strstr(*buff_ptr, I845STR)) != NULL ||
+-		(p = strstr(*buff_ptr, I865STR)) != NULL ;
++		(p = strstr(*buff_ptr, I865STR)) != NULL ||
++		(p = strstr(*buff_ptr, I945STR)) != NULL ;
+ 	
+ 		if(i)
+ 		{
+@@ -493,7 +494,7 @@
+ 	chip = i810_chip(&buff, &len, pci_f);
+ 	if (chip == NULL) 
+ 	{
+-		fprintf(stderr, "No know videocard has been found.\n");
++		fprintf(stderr, "No known videocard has been found.\n");
+ 		exit(1);
+ 	}
+ 	pclose(pci_f);
+--- i855crt.h~	2004-05-01 17:06:28.000000000 +0100
++++ i855crt.h	2006-10-09 16:04:43.000000000 +0100
+@@ -45,6 +45,7 @@
+ #define I845STR			"8086:2562"
+ #define I855STR			"8086:3582"
+ #define I865STR			"8086:2572"
++#define I945STR                 "8086:27a2"
+ #define MEMSTR			"Memory at"
+ #define NONPRSTR		"32-bit, non-prefetchable"
+ 
