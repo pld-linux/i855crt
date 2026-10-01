@@ -1,0 +1,60 @@
+--- i855crt-0.4/dumpreg.c~	2004-05-01 18:50:45.000000000 +0200
++++ i855crt-0.4/dumpreg.c	2026-10-01 09:29:51.753327156 +0200
+@@ -23,7 +23,7 @@
+ unsigned char *mmio;
+ 
+ /*this tries to find know video card in lspci output */
+-char *i810_chip(char **buff_ptr, int *len_ptr, FILE *pci_f) 
++char *i810_chip(char **buff_ptr, size_t *len_ptr, FILE *pci_f) 
+ {
+ 	int i;
+ 	char *p;
+@@ -55,7 +55,7 @@
+ }
+ 
+ /*this extracts the iomem address of the specified device */
+-unsigned long i810_addr(char **buff_ptr, int *len_ptr, FILE *pci_f)
++unsigned long i810_addr(char **buff_ptr, size_t *len_ptr, FILE *pci_f)
+ {
+ 	char *p;
+ 
+@@ -70,7 +70,8 @@
+ 
+ int main (int argc, char *argv[])
+ {
+-	int mem,len,i,fd;
++	int mem,i,fd;
++	size_t len;
+ 	unsigned long addr;
+ 	FILE *pci_f;
+ 	char *buff = NULL;
+--- i855crt-0.4/i855crt.c~	2026-10-01 09:28:33.000000000 +0200
++++ i855crt-0.4/i855crt.c	2026-10-01 09:31:13.216970646 +0200
+@@ -241,7 +241,7 @@
+ }
+ 	
+ /*this tries to find known video card in lspci output */
+-char *i810_chip(char **buff_ptr, int *len_ptr, FILE *pci_f) 
++char *i810_chip(char **buff_ptr, size_t *len_ptr, FILE *pci_f) 
+ {
+ 	int i;
+ 	char *p;
+@@ -274,7 +274,7 @@
+ }
+ 
+ /*this extracts the iomem address of the specified device */
+-unsigned long i810_addr(char **buff_ptr, int *len_ptr, FILE *pci_f)
++unsigned long i810_addr(char **buff_ptr, size_t *len_ptr, FILE *pci_f)
+ {
+ 	char *p;
+ 
+@@ -443,7 +443,8 @@
+ {
+ 	int mem;
+ 	unsigned long addr;
+-	int i, crt,len;
++	int i, crt;
++	size_t len;
+ 	FILE *pci_f;
+ 	char *buff = NULL;
+ 	char lspcistr[] = CMD_LSPCI " -v -d xxxx:xxxx";

@@ -1,12 +1,13 @@
 Summary:	intel 855GM crt video out driver
 Name:		i855crt
 Version:	0.4
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/sourceforge/i855crt/%{name}-%{version}.tar.gz
 Patch0:		%{name}-Makefile.patch
 Patch1:		%{name}-4711436.patch
+Patch2:		size_t.patch
 # Source0-md5:	6522fa9b261be53c366ba153876fcc83
 URL:		http://i855crt.sourceforge.net/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -19,6 +20,7 @@ for external monitor) on i855GM based laptop.
 %setup -q
 %patch -P0 -p1
 %patch -P1 -p0
+%patch -P2 -p1
 # clean binaries:
 %{__make} clean
 
